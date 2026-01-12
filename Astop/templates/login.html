@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+
+</head>
+<body>
+<header class="p-3 text-primary-emphasis bg-primary-subtle border-bottom mb-3">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img src="{% static 'images/logo.png' %}" alt="Django Logo" class="img-fluid" height="150" width="150"
+                     style="border-radius: 20px">
+            </a>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li>
+                    <a href="index.html" class="nav-link px-2 text-dark">Home</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-dark">Features</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-dark">FAQs</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-dark">About</a>
+                </li>
+            </ul>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+            </form>
+            <div class="text-end">
+                <button type="button" class="btn btn-outline-dark me-2">Login</button>
+                <button type="button" class="btn btn-warning">Sign-up</button>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="container bg-light p-3 rounded mt-4">
+    <img src="{% static 'images/logo.png' %}" alt="Django Logo" class="img-fluid" height="250" width="250"
+         style="border-radius: 20px">
+    <div class="row g-4 row-gap-4 justify-content-around mb-3">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Client Login</h5>
+                <hr>
+                <form method="POST">
+                    <div class="row mb-3">
+                        <p class="card-text fw-semibold">Email</p>
+                        <input class="form-control " type="text" name="email" placeholder="Enter Email">
+                    </div>
+                    <div class="row mb-3">
+                        <p class="card-text mb-3 fw-semibold">Password</p>
+                        <input class="form-control " type="password" name="password" placeholder="Enter Password">
+                    </div>
+                </form>
+                <div class="d-flex justify-content-around mb-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+        </ul>
+        <p class="text-center text-body-secondary">© 2025 Company, Inc</p></footer>
+</div>
+</body>
+</html>

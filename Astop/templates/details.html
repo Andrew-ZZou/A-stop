@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .checked {
+          color: orange;
+        }
+    </style>
+</head>
+<body>
+<header class="p-3 text-primary-emphasis bg-primary-subtle border-bottom mb-3">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img src="{% static 'images/logo.png' %}" alt="Django Logo" class="img-fluid" height="150" width="150"
+                     style="border-radius: 20px">
+            </a>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li>
+                    <a href=" " class="nav-link px-2 text-dark">Home</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-dark">Features</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-dark">FAQs</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-dark">About</a>
+                </li>
+            </ul>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+            </form>
+            <div class="text-end">
+                <button type="button" class="btn btn-outline-dark me-2">Login</button>
+                <button type="button" class="btn btn-warning">Sign-up</button>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="container bg-light p-3 rounded mb-3">
+    <h1>John Smith</h1>
+    <div class="rating">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+    </div>
+    <hr>
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{% static 'images/JohnSmith.jpg' %}" class="img-fluid rounded-start" alt="photo of trader">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">About Myself</h5>
+                    <p class="card-text">Little bit of myself area.....Experience......lifestyle...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <img src="{% static 'images/promo default.png' %}" class="card-img-top" alt="advertisement image" style="height: 300px">
+        <div class="card-body">
+            <h5 class="card-title">Current offer</h5>
+            <hr>
+            <p class="card-text">20% off for Over $1000 service.</p>
+            <p class="card-text">10% off for $1000 and under. </p>
+            <p class="card-text"><small class="text-body-secondary">Promotion finishes at 31-12-2025</small></p>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Contact</h5>
+            <hr>
+            <p class="card-text">Phone Number: 021 123 4567</p>
+            <p class="card-text">Email: johnsmith@email.com</p>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Reviews</h5>
+            <hr>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">First Review</li>
+                <li class="list-group-item">Second Review</li>
+                <li class="list-group-item">Third Review</li>
+            </ul>
+        </div>
+    </div>
+</main>
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+        </ul>
+        <p class="text-center text-body-secondary">© 2025 Company, Inc</p></footer>
+</div>
+</body>
+</html>

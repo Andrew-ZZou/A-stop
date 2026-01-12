@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+
+</head>
+
+
+<body>
+<main class="container bg-light p-3 rounded mt-4">
+    <img src="{% static 'images/logo.png' %}" alt="Django Logo" class="img-fluid" height="250" width="250"
+         style="border-radius: 20px">
+    <div class="row g-4 row-gap-4 justify-content-around mb-3">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Admin Login</h5>
+                <hr>
+                <form method="POST">
+                    <div class="row mb-3">
+                        <p class="card-text">Username</p>
+                        <input class="form-control " type="text" name="username" placeholder="Enter Username">
+                    </div>
+                    <div class="row mb-3">
+                        <p class="card-text mb-3 ">Password</p>
+                        <input class="form-control " type="password" name="password" placeholder="Enter Password">
+                    </div>
+                </form>
+                <button type="button" class="btn btn-outline-dark me-2">Login</button>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
