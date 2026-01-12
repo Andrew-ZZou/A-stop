@@ -14,14 +14,6 @@ def details(request, client_id):
     return render(request, 'details.html')
 
 
-def backdoor(request):
-    return render(request, 'backdoor.html')
-
-
-def management(request):
-    return render(request, 'management.html')
-
-
 def registration(request):
     return render(request, 'registration.html')
 

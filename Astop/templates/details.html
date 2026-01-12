@@ -40,8 +40,8 @@
                 <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
             </form>
             <div class="text-end">
-                <button type="button" class="btn btn-outline-dark me-2">Login</button>
-                <button type="button" class="btn btn-warning">Sign-up</button>
+                <button type="button" class="btn btn-outline-dark me-2">Logout</button>
+                <button class="btn btn-sm btn-primary" onclick="editInfo()">Edit</button>
             </div>
         </div>
     </div>
@@ -56,37 +56,78 @@
         <span class="fa fa-star"></span>
     </div>
     <hr>
-    <div class="card mb-3">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="{% static 'images/JohnSmith.jpg' %}" class="img-fluid rounded-start" alt="photo of trader">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">About Myself</h5>
-                    <p class="card-text">Little bit of myself area.....Experience......lifestyle...</p>
+    <div id="viewMode">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{% static 'images/JohnSmith.jpg' %}" class="img-fluid rounded-start" alt="photo of trader">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">About Myself</h5>
+                        <p class="card-text" id="aboutMyself"> bit of myself area.....Experience......lifestyle...</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="card mb-3">
-        <img src="{% static 'images/promo default.png' %}" class="card-img-top" alt="advertisement image" style="height: 300px">
-        <div class="card-body">
-            <h5 class="card-title">Current offer</h5>
-            <hr>
-            <p class="card-text">20% off for Over $1000 service.</p>
-            <p class="card-text">10% off for $1000 and under. </p>
-            <p class="card-text"><small class="text-body-secondary">Promotion finishes at 31-12-2025</small></p>
+        <div class="card mb-3">
+            <img src="{% static 'images/promo default.png' %}" class="card-img-top" alt="advertisement image" style="height: 300px">
+            <div class="card-body">
+                <h5 class="card-title" id="promoTitle">Current offer</h5>
+                <hr>
+                <p class="card-text" id="promoContent1" >20% off for Over $1000 service.</p>
+                <p class="card-text" id="promoContent2">10% off for $1000 and under. </p>
+                <p class="card-text" id="promoContent3"><small class="text-body-secondary">Promotion finishes at 31-12-2025</small></p>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Contact</h5>
+                <hr>
+                <p><strong>Phone Number: </strong></p><p class="card-text" id="phoneText"> 021 123 4567</p>
+                <p><strong>Email Address: </strong></p><p class="card-text" id="emailText">johnsmith@email.com</p>
+            </div>
         </div>
     </div>
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title">Contact</h5>
-            <hr>
-            <p class="card-text">Phone Number: 021 123 4567</p>
-            <p class="card-text">Email: johnsmith@email.com</p>
+    <form id="editMode" class="d-none">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{% static 'images/JohnSmith.jpg' %}" class="img-fluid rounded-start" alt="photo of trader">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">About Myself</h5>
+                        <input type="text" class="card-text" id="aboutMyselfInput"  value="Little bit of myself area.....Experience......lifestyle...">
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="card mb-3">
+            <img src="{% static 'images/promo default.png' %}" class="card-img-top" alt="advertisement image" style="height: 300px">
+            <div class="card-body">
+                <input type="text" class="card-title" id="promoTitleInput" value="Current offer">
+                <hr>
+                <input type="text" class="card-text" id="promoContent1Input" value="20% off for Over $1000 service.">
+                <input type="text" class="card-text" id="promoContent2Input" value="10% off for $1000 and under.">
+                <input type="text" class="card-text" id="promoContent3Input" value="Promotion finishes at 31-12-2025">
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Contact</h5>
+                <hr>
+                <label class="form-label">Phone Number: </label>
+                <input type="text" id="phoneInput" class="card-text" value="021 123 4567">
+                <label class="form-label">Email Address: </label>
+                <input type="email" id="emailInput" class="card-text" value="johnsmith@email.com">
+            </div>
+        </div>
+        <div class="d-flex gap-2">
+            <button type="button" class="btn btn-success" onclick="saveInfo()">Save</button>
+            <button type="button" class="btn btn-secondary" onclick="cancelEdit()">Cancel</button>
+        </div>
+    </form>
     <div class="card mb-3">
         <div class="card-body">
             <h5 class="card-title">Reviews</h5>
@@ -109,5 +150,43 @@
         </ul>
         <p class="text-center text-body-secondary">© 2025 Company, Inc</p></footer>
 </div>
+
+<script>
+  function editInfo() {
+      document.getElementById("viewMode").classList.add("d-none");
+      document.getElementById("editMode").classList.remove("d-none");
+  }
+
+  function saveInfo() {
+      document.getElementById("aboutMyself").innerText =
+          document.getElementById("aboutMyselfInput").value;
+
+      document.getElementById("promoTitle").innerText =
+          document.getElementById("promoTitleInput").value;
+
+      document.getElementById("promoContent1").innerText =
+          document.getElementById("promoContent1Input").value;
+
+      document.getElementById("promoContent2").innerText =
+          document.getElementById("promoContent2Input").value;
+
+      document.getElementById("promoContent3").innerText =
+          document.getElementById("promoContent3Input").value;
+
+      document.getElementById("emailText").innerText =
+          document.getElementById("emailInput").value;
+
+      document.getElementById("phoneText").innerText =
+          document.getElementById("phoneInput").value;
+
+      cancelEdit();
+  }
+
+  function cancelEdit() {
+      document.getElementById("editMode").classList.add("d-none");
+      document.getElementById("viewMode").classList.remove("d-none");
+  }
+</script>
 </body>
 </html>
+
