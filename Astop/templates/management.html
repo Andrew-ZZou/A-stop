@@ -31,7 +31,7 @@
 <main class="container bg-light p-3 rounded mb-3">
     <h1>Add New Client</h1>
     <hr>
-    <form>
+    <form method="POST">
         <div class="row mb-3">
             <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
             <div class="col-sm-10">
@@ -50,6 +50,14 @@
                 <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
             </div>
         </div>
+
+        <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Phone</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="phone" placeholder="Phone Number">
+            </div>
+        </div>
+
         <div class="row mb-3">
             <label for="address" class="col-sm-2 col-form-label">Address</label>
             <div class="col-sm-10">
@@ -60,6 +68,23 @@
             <label for="location" class="col-sm-2 col-form-label">City/Town</label>
             <div class="col-sm-10">
                 <input type="email" class="form-control" id="location" placeholder="City/town Location">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="location" class="col-sm-2 col-form-label">Occupation</label>
+            <div class="col-sm-10">
+                <input type="hidden" name="occupation" id="occupation">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        Ocuppation
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Plumber</a></li>
+                        <li><a class="dropdown-item" href="#">Electrician</a></li>
+                        <li><a class="dropdown-item" href="#">Handyman</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -79,16 +104,6 @@
             <label for="nzbn" class="col-sm-2 col-form-label">NZBN Number</label>
             <div class="col-sm-10">
                 <input class="form-control" id="nzbn" placeholder="NZBN Number">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-sm-10 offset-sm-2">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck1">
-                    <label class="form-check-label" for="gridCheck1">
-                        Check
-                    </label>
-                </div>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Add New Client</button>

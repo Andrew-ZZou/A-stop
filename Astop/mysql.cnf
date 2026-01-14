@@ -1,0 +1,5 @@
+[client]
+database = astop
+user = root
+password = Admin123
+default-character-set = utf8
