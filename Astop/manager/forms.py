@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-class ManagementForm(forms.Form):
+class ClientForm(forms.Form):
     first_name = forms.CharField(label='First Name', max_length=100,min_length=1,
                                  error_messages={'required':'Please enter first name'})
     last_name = forms.CharField(label='Last Name', max_length=100, min_length=1,

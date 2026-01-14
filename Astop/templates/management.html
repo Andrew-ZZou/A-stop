@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Blog</title>
+    <title>New Client-- A-Stop</title>
     <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
-    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.css' %}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .checked {
@@ -32,52 +32,53 @@
     <h1>Add New Client</h1>
     <hr>
     <form method="POST">
+        {% csrf_token %}
         <div class="row mb-3">
-            <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+            <label for="first_name" class="col-sm-2 col-form-label">First Name</label>
             <div class="col-sm-10">
-                <input class="form-control" id="firstName" placeholder="First Name">
+                <input class="form-control" name="first_name" id="first_name" placeholder="First Name">
             </div>
         </div>
         <div class="row mb-3">
-            <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+            <label for="last_name" class="col-sm-2 col-form-label">Last Name</label>
             <div class="col-sm-10">
-                <input class="form-control" id="lastName" placeholder="Last Name">
+                <input class="form-control" name="last_name" id="last_name" placeholder="Last Name">
             </div>
         </div>
         <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email">
             </div>
         </div>
 
         <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Phone</label>
+            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="phone" placeholder="Phone Number">
+                <input class="form-control" name="phone" id="phone" placeholder="Phone Number">
             </div>
         </div>
 
         <div class="row mb-3">
             <label for="address" class="col-sm-2 col-form-label">Address</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="address" placeholder="Address">
+                <input  class="form-control" name="address" id="address" placeholder="Address">
             </div>
         </div>
         <div class="row mb-3">
-            <label for="location" class="col-sm-2 col-form-label">City/Town</label>
+            <label for="city" class="col-sm-2 col-form-label">City/Town</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="location" placeholder="City/town Location">
+                <input class="form-control" name="city" id="city" placeholder="City/town Location">
             </div>
         </div>
         <div class="row mb-3">
-            <label for="location" class="col-sm-2 col-form-label">Occupation</label>
+            <label for="occupation" class="col-sm-2 col-form-label">Occupation</label>
             <div class="col-sm-10">
                 <input type="hidden" name="occupation" id="occupation">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        Ocuppation
+                            aria-expanded="false" id="occupationBtn">
+                        Occupation
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Plumber</a></li>
@@ -89,21 +90,21 @@
         </div>
 
         <div class="row mb-3">
-            <label for="code" class="col-sm-2 col-form-label">Registration Code</label>
+            <label for="registration_code" class="col-sm-2 col-form-label">Registration Code</label>
             <div class="col-sm-10">
-                <input class="form-control" id="code" placeholder="Registration Code">
+                <input class="form-control" name="registration_code" id="registration_code" placeholder="Registration Code">
             </div>
         </div>
         <div class="row mb-3">
-            <label for="tradingName" class="col-sm-2 col-form-label">Trading Name</label>
+            <label for="trade_name" class="col-sm-2 col-form-label">Trading Name</label>
             <div class="col-sm-10">
-                <input class="form-control" id="tradingName" placeholder="Trading Name">
+                <input class="form-control" name="trade_name" id="trade_name" placeholder="Trading Name">
             </div>
         </div>
         <div class="row mb-3">
             <label for="nzbn" class="col-sm-2 col-form-label">NZBN Number</label>
             <div class="col-sm-10">
-                <input class="form-control" id="nzbn" placeholder="NZBN Number">
+                <input class="form-control" name="nzbn" id="nzbn" placeholder="NZBN Number">
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Add New Client</button>
@@ -113,5 +114,16 @@
     <footer class="py-3 my-4">
         <p class="text-center text-body-secondary">© 2025 Company, Inc</p></footer>
 </div>
+
+<script>
+document.querySelectorAll('.dropdown-item').forEach(item => {
+    item.addEventListener('click', function (e) {
+        e.preventDefault();
+        const value = this.textContent.trim();
+        document.getElementById('occupation').value = value;
+        document.getElementById('occupationBtn').textContent = value;
+    });
+});
+</script>
 </body>
 </html>
