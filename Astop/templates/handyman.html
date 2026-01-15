@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Handyman{% endblock %}
+
+{% block main %}
+   <h1>Handyman List</h1>
+    <hr>
+    <div class="card">
+        <div class="card-header d-flex flex-column flex-md-row align-items-md-center justify-content-md-between">
+            <h5 class="mb-2 mb-md-0">John Smith</h5>
+            <div class="rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </div>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Location: Auckland</h5>
+            <p class="card-text">Special in house plubming...</p>
+            <a href="#" class="btn btn-primary">Find out more...</a>
+        </div>
+    </div>
+
+{% endblock %}

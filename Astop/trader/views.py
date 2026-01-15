@@ -6,8 +6,14 @@ def index(request):
     return render(request, 'index.html')
 
 
-def plumbers(request):
-    return render(request, 'plumbers.html')
+def plumber(request):
+    return render(request, 'plumber.html')
+
+def electrician(request):
+    return render(request, 'electrician.html')
+
+def handyman(request):
+    return render(request, 'handyman.html')
 
 
 def details(request, client_id):
