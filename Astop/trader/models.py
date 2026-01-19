@@ -5,15 +5,16 @@ from manager.models import Client
 # Create your models here.
 class Trader(models.Model):
 
-    client_id = models.ForeignKey(Client, on_delete=models.CASCADE)
+    client_id = models.ForeignKey(Client, on_delete=models.CASCADE,db_column='client_id')
     email = models.EmailField()
-    phone_number = models.IntegerField()
+    phone_number = models.CharField(max_length=100)
     password = models.CharField(max_length=255)
-    promo_title = models.CharField(max_length=100)
-    promo_content1 = models.TextField()
-    promo_content2 = models.TextField()
-    promo_content3 = models.TextField()
+    about_myself = models.TextField(null=True,blank=True)
+    promo_title = models.CharField(max_length=100,null=True,blank=True)
+    promo_content1 = models.TextField(null=True,blank=True)
+    promo_content2 = models.TextField(null=True,blank=True)
+    promo_content3 = models.TextField(null=True,blank=True)
 
 
     def __str__(self):
-        return self.user.email
+        return f"{self.client_id} - {self.email}"

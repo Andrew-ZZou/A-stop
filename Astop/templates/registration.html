@@ -6,35 +6,47 @@
 
     <h1>Registration</h1>
     <hr>
-    <form>
+    <form method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                {{ form.errors }}
+            </div>
+        {% endif %}
         <div class="row mb-3">
             <label for="code" class="col-sm-2 col-form-label">Registration Code</label>
             <div class="col-sm-10">
-                <input class="form-control" id="code" placeholder="Registration Code">
+                <input class="form-control" name="registration_code" id="code" placeholder="Registration Code">
             </div>
         </div>
         <div class="row mb-3">
             <label for="clientID" class="col-sm-2 col-form-label">Client ID</label>
             <div class="col-sm-10">
-                <input class="form-control" id="clientID" placeholder="Client ID">
+                <input class="form-control" name="client_id" id="clientID" placeholder="Client ID">
             </div>
         </div>
         <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                <input type="email" class="form-control" name="email" id="inputEmail3" placeholder="Email">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputPhone" class="col-sm-2 col-form-label">Phone Number</label>
+            <div class="col-sm-10">
+                <input class="form-control" name="phone_number" id="inputPhone" placeholder="Phone Number">
             </div>
         </div>
         <div class="row mb-3">
             <label for="password" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
-                <input type="password" id="password" placeholder="Enter Password">
+                <input type="password" name="password" id="password" placeholder="Enter Password">
             </div>
         </div>
         <div class="row mb-3">
             <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password</label>
             <div class="col-sm-10">
-                <input type="password" id="confirmPassword" placeholder="Confirm Password">
+                <input type="password" name="confirm_password" id="confirmPassword" placeholder="Confirm Password">
             </div>
         </div>
 

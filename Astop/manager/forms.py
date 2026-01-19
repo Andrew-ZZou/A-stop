@@ -1,9 +1,14 @@
+from enum import unique
+
 from django import forms
 from django.contrib.auth import get_user_model
+
+from manager.models import Client
 
 User = get_user_model()
 
 class ClientForm(forms.Form):
+
     first_name = forms.CharField(label='First Name', max_length=100,min_length=1,
                                  error_messages={'required':'Please enter first name'})
     last_name = forms.CharField(label='Last Name', max_length=100, min_length=1,
@@ -20,7 +25,9 @@ class ClientForm(forms.Form):
 #ensure no same email address
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        exists = User.objects.filter(email=email).exists()
+        exists = Client.objects.filter(email=email).exists()
         if exists:
             raise forms.ValidationError('Email already exists')
         return email
+
+
