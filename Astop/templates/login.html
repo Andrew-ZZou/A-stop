@@ -10,6 +10,12 @@
                 <h5 class="card-title">Client Login</h5>
                 <hr>
                 <form method="POST">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.errors }}
+                    </div>
+                    {% endif %}
                     <div class="row mb-3">
                         <p class="card-text fw-semibold">Email</p>
                         <input class="form-control " type="text" name="email" placeholder="Enter Email">
@@ -18,11 +24,13 @@
                         <p class="card-text mb-3 fw-semibold">Password</p>
                         <input class="form-control " type="password" name="password" placeholder="Enter Password">
                     </div>
+                    <div class="d-flex justify-content-around mb-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-danger" onclick="window.location.href='{% url 'trader:index' %}'">Cancel
+                        </button>
+                    </div>
                 </form>
-                <div class="d-flex justify-content-around mb-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="submit" class="btn btn-danger" onclick="window.location.href='index'">Cancel</button>
-                </div>
+
                 <p><a href="{% url 'trader:registration' %}" class="link-underline-primary">Register as new user</a></p>
             </div>
         </div>

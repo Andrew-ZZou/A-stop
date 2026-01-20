@@ -1,7 +1,7 @@
+from django.contrib.auth.hashers import check_password
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
-from .forms import TraderForm, LoginForm
-from django.contrib.auth import login, authenticate
+from .forms import TraderForm, LoginForm, TraderEditForm
 from .models import Trader
 from django.contrib.auth.hashers import make_password
 from manager.models import Client
@@ -12,17 +12,32 @@ def index(request):
 
 
 def plumber(request):
-    return render(request, 'plumber.html')
+    plumbers = Client.objects.filter(occupation = 'Plumber')
+    return render(request, 'plumber.html', {'plumbers': plumbers})
 
+#electrician page
 def electrician(request):
-    return render(request, 'electrician.html')
+    #find all clients with occupation as electrician
+    electricians = Client.objects.filter(occupation='Electrician')
+    return render(request, 'electrician.html', {'electricians': electricians})
+
 
 def handyman(request):
-    return render(request, 'handyman.html')
+    handymen = Client.objects.filter(occupation='Handyman')
+    return render(request, 'handyman.html', {'handymen': handymen})
+
 
 
 def details(request, client_id):
-    return render(request, 'details.html')
+    client = Client.objects.get(client_id=client_id)
+
+    trader = None
+    if request.session.get('trader_id'):
+        try:
+            trader = Trader.objects.get(id = request.session['trader_id'])
+        except Trader.DoesNotExist:
+            trader = None
+    return render(request, 'details.html', {'client': client, 'trader': trader})
 
 # register trader promo details
 @require_http_methods(['GET', 'POST'])
@@ -52,27 +67,56 @@ def registration(request):
             return render(request, 'registration.html', {'form': form})
 #trader login
 @require_http_methods(['GET', 'POST'])
-def alogin(request):
+def login(request):
     if request.method == 'GET':
-        return render(request, 'login.html')
+        return render(request, 'login.html', {'form': LoginForm()})
     else:
         form = LoginForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
 
-            user = authenticate(request, email=email, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('index')
+            user = Trader.objects.filter(email=email).first()
+
+            if user and check_password(password, user.password):
+                request.session['trader_id'] = user.id
+                request.session['client_id'] = user.client_id.client_id
+                return redirect('trader:promo_edit', client_id=user.client_id.client_id)
             else:
-                return render(request, 'login.html')
+                form.add_error('email', 'Invalid email or password')
+                return render(request, 'login.html', {'form': form})
         else:
 
-            return render(request, 'login.html')
+            return render(request, 'login.html', {'form': form})
+
+@require_http_methods(['GET', 'POST'])
+def promo_edit(request,client_id):
+    if request.method == 'GET':
+        return render(request, 'promo_edit.html',{'form':TraderEditForm(),'trader':Trader.objects.get(client_id=client_id),'client':Client.objects.get(client_id=client_id)})
+    else:
+        client = Client.objects.get(client_id=client_id)
+        trader = Trader.objects.get(client_id=client_id)
+        form = TraderEditForm(request.POST)
+        if form.is_valid():
+            trader.about_myself = form.cleaned_data.get('about_myself')
+            trader.promo_title = form.cleaned_data.get('promo_title')
+            trader.promo_content1 = form.cleaned_data.get('promo_content1')
+            trader.promo_content2 = form.cleaned_data.get('promo_content2')
+            trader.promo_content3 = form.cleaned_data.get('promo_content3')
+            trader.phone_number = form.cleaned_data.get('phone_number')
+            trader.email = form.cleaned_data.get('email')
+            trader.password = make_password(form .cleaned_data.get('password'))
+
+            trader.save()
+            return redirect('trader:details', client_id=client.client_id)
+        else:
+            return render(request, 'promo_edit.html', {'form': form})
+
+
 
 
 def test(request):
     return render(request, 'test.html')
+
 
 

@@ -5,22 +5,16 @@
 {% block main %}
    <h1>Plumber List</h1>
     <hr>
+{% for client in plumbers %}
     <div class="card">
         <div class="card-header d-flex flex-column flex-md-row align-items-md-center justify-content-md-between">
-            <h5 class="mb-2 mb-md-0">John Smith</h5>
-            <div class="rating">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-            </div>
+            <h5 class="mb-2 mb-md-0">{{client.first_name}} {{client.last_name}}</h5>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Location: Auckland</h5>
-            <p class="card-text">Special in house plubming...</p>
-            <a href="#" class="btn btn-primary">Find out more...</a>
+            <h5 class="card-title">Location: {{ client.city }}</h5>
+            <p class="card-text">{{client.trade_name}}</p>
+            <a href="{% url 'trader:details' client.client_id %}" class="btn btn-primary">Find out more...</a>
         </div>
     </div>
-
+{% endfor %}
 {% endblock %}

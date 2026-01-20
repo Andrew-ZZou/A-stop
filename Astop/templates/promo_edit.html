@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .checked {
+          color: orange;
+        }
+    </style>
+</head>
+<body>
+<header class="p-3 text-primary-emphasis bg-primary-subtle border-bottom mb-3">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img src="{% static 'images/logo.png' %}" alt="Django Logo" class="img-fluid" height="150" width="150"
+                     style="border-radius: 20px">
+            </a>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li>
+                    <a href="{% url 'trader:index' %}"class="nav-link px-2 text-dark">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'trader:login' %}" class="nav-link px-2 text-dark">Trader</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-dark">FAQs</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-dark">About</a>
+                </li>
+            </ul>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+            </form>
+            <div class="text-end">
+                <button type="button" class="btn btn-outline-dark me-2" onclick="window.location.href ='{% url 'trader:index' %}'">Logout</button>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="container bg-light p-3 rounded mb-3">
+    <h1>Registration</h1>
+    <hr>
+    <form method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+        <div class="row mb-3">
+            <label for="about_myself" class="col-sm-2 col-form-label">About Myself</label>
+            <div class="col-sm-10">
+                <input class="form-control" name="about_myself" id="about_myself" value="{{ trader.about_myself|default:'Something about yourself' }}" type="text">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="promo_title" class="col-sm-2 col-form-label">Promotion Title</label>
+            <div class="col-sm-10">
+                <input class="form-control" name="promo_title" id="promo_title" value="{{ trader.promo_title|default:'Promotion Title' }}">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="promo_content1" class="col-sm-2 col-form-label">Promotion Content 1</label>
+            <div class="col-sm-10">
+                <input class="form-control" name="promo_content1" id="promo_content1" value="{{ trader.promo_content1|default:'' }}">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="promo_content2" class="col-sm-2 col-form-label">Promotion Content 2</label>
+            <div class="col-sm-10">
+                <input class="form-control" name="promo_content2" id="promo_content2" value="{{ trader.promo_content2|default:'' }}">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="promo_content3" class="col-sm-2 col-form-label">Promotion end date</label>
+            <div class="col-sm-10">
+                <input class="form-control" name="promo_content3" id="promo_content3" value="{{ trader.promo_content3|default:'01/01/2027' }}">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" name="email" id="inputEmail3" pvalue="{{ trader.email|default:client.email}}">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputPhone" class="col-sm-2 col-form-label">Phone Number</label>
+            <div class="col-sm-10">
+                <input class="form-control" name="phone_number" id="inputPhone" value="{{ trader.phone_number|default:client.phone}}">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" name="password" id="password" placeholder="Enter Password">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password</label>
+            <div class="col-sm-10">
+                <input type="password" name="confirm_password" id="confirmPassword" placeholder="Confirm Password">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-around mb-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-danger" onclick="{% url 'trader:index' %}">Cancel</button>
+        </div>
+    </form>
+</main>
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="{% url 'trader:index' %}" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="{% url 'trader:login' %}" class="nav-link px-2 text-body-secondary">Trader</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+        </ul>
+        <p class="text-center text-body-secondary">© 2025 Company, Inc</p></footer>
+</div>
+</body>
+</html>

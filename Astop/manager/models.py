@@ -19,7 +19,7 @@ class Client(models.Model):
     nzbn = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.user.email
+        return self.email
 # set client id auto increase as format of C****
     def save(self, *args, **kwargs):
         if not self.client_id:

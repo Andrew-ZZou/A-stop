@@ -58,3 +58,9 @@ class TraderForm(forms.Form):
 class LoginForm(forms.Form):
     email = forms.EmailField(label='Email', error_messages={'required':'Please enter email'})
     password = forms.CharField(widget=forms.PasswordInput,label='Password', error_messages={'required':'Please enter password'})
+
+class TraderEditForm(forms.ModelForm):
+    class Meta:
+        model = Trader
+        fields = ['email','phone_number','about_myself',
+                  'promo_title','promo_content1','promo_content2','promo_content3','password']
