@@ -9,13 +9,15 @@ class TraderForm(forms.Form):
     registration_code = forms.CharField(label='Registration Code', max_length=100)
     email = forms.EmailField(label='Email', error_messages={'required':'Please enter email'})
     phone_number = forms.CharField(label='Phone Number', error_messages={'required':'Please enter phone number'})
-    password = forms.CharField(widget=forms.PasswordInput,label= 'Password', error_messages={'required':'Please enter password'})
-    confirm_password = forms.CharField(label='Confirm Password', error_messages={'required':'Please enter password'})
+    password = forms.CharField(required= False, widget=forms.PasswordInput,label= 'Password')
+    confirm_password = forms.CharField(required= False,label='Confirm Password')
     about_myself = forms.CharField(required= False)
     promo_title = forms.CharField(required= False)
     promo_content1 = forms.CharField(widget=forms.Textarea, required= False)
     promo_content2 = forms.CharField(widget=forms.Textarea, required= False)
     promo_content3 = forms.CharField(widget=forms.Textarea, required= False)
+    photo = forms.ImageField(required= False)
+    promo_image = forms.ImageField(required= False)
 
 #ensure no same email address
     def clean_email(self):
@@ -63,4 +65,4 @@ class TraderEditForm(forms.ModelForm):
     class Meta:
         model = Trader
         fields = ['email','phone_number','about_myself',
-                  'promo_title','promo_content1','promo_content2','promo_content3','password']
+                  'promo_title','promo_content1','promo_content2','promo_content3','password','photo','promo_image']

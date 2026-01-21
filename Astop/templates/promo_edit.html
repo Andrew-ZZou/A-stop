@@ -2,17 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Details</title>
+    <title>Promotion Editor--A-Stop</title>
     <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'bootstrap/popper.min.js' %}"></script>
     <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        .checked {
-          color: orange;
-        }
-    </style>
 </head>
 <body>
 <header class="p-3 text-primary-emphasis bg-primary-subtle border-bottom mb-3">
@@ -48,7 +43,7 @@
 <main class="container bg-light p-3 rounded mb-3">
     <h1>Registration</h1>
     <hr>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% if form.errors %}
             <div class="alert alert-danger">
@@ -56,9 +51,21 @@
             </div>
         {% endif %}
         <div class="row mb-3">
+            <label for="photo" class="col-sm-2 col-form-label">Your Personal Photo</label>
+            <div class="col-sm-10">
+                <input type="file" class="form-control-file" id="photo" name="photo">
+            </div>
+        </div>
+        <div class="row mb-3">
             <label for="about_myself" class="col-sm-2 col-form-label">About Myself</label>
             <div class="col-sm-10">
                 <input class="form-control" name="about_myself" id="about_myself" value="{{ trader.about_myself|default:'Something about yourself' }}" type="text">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="promo_image" class="col-sm-2 col-form-label">Promotion Image</label>
+            <div class="col-sm-10">
+                <input type="file" class="form-control-file" id="promo_image" name="promo_image">
             </div>
         </div>
         <div class="row mb-3">
@@ -88,7 +95,7 @@
         <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" name="email" id="inputEmail3" pvalue="{{ trader.email|default:client.email}}">
+                <input type="email" class="form-control" name="email" id="inputEmail3" value="{{ trader.email|default:client.email}}">
             </div>
         </div>
         <div class="row mb-3">
@@ -112,7 +119,7 @@
 
         <div class="d-flex justify-content-around mb-3">
             <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="submit" class="btn btn-danger" onclick="{% url 'trader:index' %}">Cancel</button>
+            <button type="submit" class="btn btn-danger" onclick="window.location.href='{% url 'trader:index' %}'">Cancel</button>
         </div>
     </form>
 </main>

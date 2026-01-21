@@ -11,8 +11,8 @@
             <h5 class="mb-2 mb-md-0">{{client.first_name}} {{client.last_name}}</h5>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Location: {{ client.city }}</h5>
-            <p class="card-text">{{client.trade_name}}</p>
+            <h5 class="card-text">Business Name: {{client.trade_name}}</h5>
+            <p class="card-title">Location: {{ client.city }}</p>
             <a href="{% url 'trader:details' client.client_id %}" class="btn btn-primary">Find out more...</a>
         </div>
     </div>

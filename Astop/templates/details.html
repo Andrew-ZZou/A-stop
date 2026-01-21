@@ -10,7 +10,7 @@
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="{% static 'images/JohnSmith.jpg' %}" class="img-fluid rounded-start" alt="photo of trader">
+                    <img src="{{ trader.photo.url }}" class="img-fluid rounded-start" alt="photo of trader" style='max-height: 400px'>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="card mb-3">
-            <img src="{% static 'images/promo default.png' %}" class="card-img-top" alt="advertisement image" style="height: 300px">
+            <img src="{{ trader.promo_image.url }}" class="card-img-top" alt="advertisement image" style="height: 400px">
             <div class="card-body">
                 <h5 class="card-title" id="promoTitle">{{ trader.promo_title|default:"Promotion" }}</h5>
                 <hr>

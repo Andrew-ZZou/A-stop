@@ -12,5 +12,6 @@ urlpatterns = [
     path('registration/', views.registration, name = 'registration'),
     path('login/', views.login, name = 'login'),
     path('promo_edit/<client_id>', views.promo_edit, name = 'promo_edit'),
+    path('search/', views.search, name = 'search'),
     path('test', views.test, name = 'test'),
 ]

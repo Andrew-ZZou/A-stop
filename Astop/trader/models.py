@@ -14,7 +14,8 @@ class Trader(models.Model):
     promo_content1 = models.TextField(null=True,blank=True)
     promo_content2 = models.TextField(null=True,blank=True)
     promo_content3 = models.TextField(null=True,blank=True)
-
+    photo = models.ImageField(default='default_photo.png', upload_to='media/',null=True,blank=True)
+    promo_image = models.ImageField(default='default_promo.png',upload_to='media/',null=True,blank=True)
 
     def __str__(self):
         return f"{self.client_id} - {self.email}"
