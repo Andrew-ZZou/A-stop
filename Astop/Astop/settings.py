@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-a*81*favy@3bp-@ee(ok!tzbr8kba!!@e!yni5nq#_jmgky^*f
 # SECURITY WARNING: don't run with debug turned on in production!
 if 'PYTHONPATH' in os.environ:
     DEBUG = os.environ.get('DJANGO_DEBUG','False') == 'True'
-    ALLOWED_HOSTS = ['astop-prod.ap-southeast-2.elasticbeanstalk.com']
+    ALLOWED_HOSTS = ['.elasticbeanstalk.com']
 else:
     DEBUG = True
     ALLOWED_HOSTS = []
