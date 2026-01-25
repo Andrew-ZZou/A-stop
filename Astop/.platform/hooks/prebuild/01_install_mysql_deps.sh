@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Install dependencies for mysqlclient on Amazon Linux 2023
+sudo dnf install -y mariadb-connector-c-devel gcc python3-devel
+
 set -e
 
 # Update metadata
