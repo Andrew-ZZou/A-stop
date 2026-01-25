@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-a*81*favy@3bp-@ee(ok!tzbr8kba!!@e!yni5nq#_jmgky^*f
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if 'PYTHONPATH' in os.environ:
-    DEBUG = False
+    DEBUG = os.environ.get('DJANGO_DEBUG','False') == 'True'
     ALLOWED_HOSTS = ['.ap-southeast-2.elasticbeanstalk.com']
 else:
     DEBUG = True
@@ -80,18 +80,30 @@ WSGI_APPLICATION = 'Astop.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME' :'astop',
-        'USER' : 'postgres',
-        'PASSWORD' : 'Admin123',
-        'HOST' : 'localhost',
-        'PORT' : '5432',
+if 'RDS_DB_NAME' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
 
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME' :'astop',
+            'USER' : 'postgres',
+            'PASSWORD' : 'Admin123',
+            'HOST' : '',
+            'PORT' : '5432',
+
+        }
+    }
 
 
 # Password validation
