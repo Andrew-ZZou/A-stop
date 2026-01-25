@@ -27,7 +27,7 @@ if 'PYTHONPATH' in os.environ:
     Debug = True
     ALLOWED_HOSTS = ['.ap-southeast-2.elasticbeanstalk.com']
 else:
-    Debug = True
+    DEBUG = True
     ALLOWED_HOSTS = []
 
 
