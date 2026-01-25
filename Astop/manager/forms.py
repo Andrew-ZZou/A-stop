@@ -1,4 +1,5 @@
 from enum import unique
+from symtable import Class
 
 from django import forms
 from django.contrib.auth import get_user_model
@@ -30,4 +31,9 @@ class ClientForm(forms.Form):
             raise forms.ValidationError('Email already exists')
         return email
 
-
+class LoginForm(forms.Form):
+    username = forms.CharField(label='Username', max_length=100)
+    password = forms.CharField(label='Password', max_length=100)
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')

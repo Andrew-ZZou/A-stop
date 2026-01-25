@@ -7,6 +7,7 @@
     <h1>{{client.first_name}} {{client.last_name}}</h1>
     <hr>
     <div id="viewMode">
+        {% if trader %}
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -38,6 +39,7 @@
                 <p><strong>Email Address: </strong></p><p class="card-text" id="emailText">{{ trader.email|default:client.email }}</p>
             </div>
         </div>
+        {% endif %}
     </div>
 </main>
 {% endblock %}

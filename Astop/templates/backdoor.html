@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Blog</title>
+    <title>Admin</title>
     <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'bootstrap/popper.min.js' %}"></script>
@@ -21,6 +21,7 @@
                 <h5 class="card-title">Admin Login</h5>
                 <hr>
                 <form method="POST">
+                    {% csrf_token %}
                     <div class="row mb-3">
                         <p class="card-text">Username</p>
                         <input class="form-control " type="text" name="username" placeholder="Enter Username">
@@ -29,8 +30,9 @@
                         <p class="card-text mb-3 ">Password</p>
                         <input class="form-control " type="password" name="password" placeholder="Enter Password">
                     </div>
+                    <button type="submit" class="btn btn-outline-dark me-2">Login</button>
                 </form>
-                <button type="button" class="btn btn-outline-dark me-2">Login</button>
+
             </div>
         </div>
     </div>

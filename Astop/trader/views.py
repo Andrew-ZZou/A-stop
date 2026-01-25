@@ -34,10 +34,9 @@ def handyman(request):
 def details(request, client_id):
     client = Client.objects.get(client_id=client_id)
 
-    trader = None
     if request.session.get('trader_id'):
         try:
-            trader = Trader.objects.get(id = request.session['trader_id'])
+            trader = Trader.objects.get(client_id=client_id)
         except Trader.DoesNotExist:
             trader = None
     return render(request, 'details.html', {'client': client, 'trader': trader})
@@ -100,6 +99,7 @@ def promo_edit(request,client_id):
 
     client = Client.objects.get(client_id=client_id)
     trader = Trader.objects.get(client_id=client_id)
+
     if request.method == 'GET':
         return render(request, 'promo_edit.html',
                       {'form':TraderEditForm(),
@@ -123,6 +123,13 @@ def promo_edit(request,client_id):
             trader = form.save(commit=False)
             if form.cleaned_data['password']:
                 trader.password = make_password(form.cleaned_data.get('password'))
+
+            if request.FILES.get('photo'):
+                trader.photo = request.FILES.get('photo')
+
+            if request.FILES.get('promo_image'):
+                trader.promo_image = request.FILES.get('promo_image')
+
             trader.save()
             return redirect('trader:details', client_id=client.client_id)
         else:

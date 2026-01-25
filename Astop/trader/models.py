@@ -4,7 +4,7 @@ from manager.models import Client
 
 # Create your models here.
 class Trader(models.Model):
-
+    # client = models.OneToOneField(Client, on_delete=models.CASCADE)
     client_id = models.ForeignKey(Client, on_delete=models.CASCADE,db_column='client_id')
     email = models.EmailField()
     phone_number = models.CharField(max_length=100)

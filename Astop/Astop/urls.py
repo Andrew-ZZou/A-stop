@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('trader.urls')),
     path('manager/',include('manager.urls')),
-    path('trader/',include('trader.urls')),
+    # path('trader/',include('trader.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
